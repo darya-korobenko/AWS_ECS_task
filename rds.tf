@@ -1,22 +1,23 @@
-resource "aws_db_instance" "rds" {
-  allocated_storage     = 20
-  storage_type          = "gp2"
-  engine                = "sqlserver-ex"
-  instance_class        = "db.t2.micro"
-  username              = "admin" 
-  password              = "YourPassword" # to encrypt
-  parameter_group_name  = "default.sqlserver-ex-14.00"
-  skip_final_snapshot    = true
-  vpc_security_group_ids = [aws_security_group.rds.id]
+resource "aws_db_instance" "myinstance" {
+  engine               = "mysql"
+  identifier           = "myrdsinstance"
+  allocated_storage    =  5
+  engine_version       = "5.7"
+  instance_class       = "db.t2.micro"
+  username             = "myrdsuser"
+  password             = "myrdspassword" # to encrypt
+  parameter_group_name = "default.mysql5.7"
+  vpc_security_group_ids = ["${aws_security_group.rds_sg.id}"]
+  skip_final_snapshot  = true
 }
 
-resource "aws_security_group" "rds" {
+resource "aws_security_group" "rds_sg" {
   name        = "rds-sg"
   description = "Security group for RDS"
   
   ingress {
-    from_port   = 1433
-    to_port     = 1433
+    from_port   = 3306
+    to_port     = 3306
     protocol    = "tcp"
     # allow traffic in from the load balancer security group
     security_groups = ["${aws_security_group.load_balancer_security_group.id}"]
