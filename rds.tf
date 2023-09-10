@@ -2,7 +2,6 @@ resource "aws_db_instance" "rds" {
   allocated_storage     = 20
   storage_type          = "gp2"
   engine                = "sqlserver-ex"
-  engine_version        = "14.00.3420.3.v1"
   instance_class        = "db.t2.micro"
   username              = "admin" 
   password              = "YourPassword" # to encrypt
