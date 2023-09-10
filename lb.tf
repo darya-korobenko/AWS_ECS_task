@@ -20,7 +20,7 @@ resource "aws_security_group" "load_balancer_security_group" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"] # allow traffic in from all sources
+    cidr_blocks = ["10.26.32.12/32", "19.104.105.29/32"] # allow traffic in from all sources
   }
 
   egress {  # allow all egress rule
