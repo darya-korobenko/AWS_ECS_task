@@ -4,7 +4,6 @@ resource "aws_db_instance" "rds" {
   engine                = "sqlserver-ex"
   engine_version        = "14.00.3420.3.v1"
   instance_class        = "db.t2.micro"
-  name                  = "exampledb"
   username              = "admin" 
   password              = "YourPassword" # to encrypt
   parameter_group_name  = "default.sqlserver-ex-14.00"
